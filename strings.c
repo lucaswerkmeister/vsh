@@ -12,3 +12,5 @@ const char* COMMAND_EXIT = "Command exited with status %d\n";
 const char* COMMAND_FAILED = "Executing command \"%s\" failed due to error: %s\n";
 
 const char* EXIT = "exit";
+
+const char* QUIT = "quit";

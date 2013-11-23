@@ -37,4 +37,9 @@ const char* COMMAND_FAILED;
  */
 const char* EXIT;
 
+/*
+ * An alias to EXIT.
+ */
+const char* QUIT;
+
 #endif
