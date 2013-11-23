@@ -6,6 +6,12 @@
 #include "run.h"
 #include "builtins.h"
 
+char** read_arguments() {
+  // TODO implement
+  static char* ret[] = { NULL };
+  return ret;
+}
+
 int main()
 {
   init_builtins();
@@ -25,13 +31,21 @@ int main()
     for(int i=0; builtins[i] != NULL; i++) {
       Builtin *builtin = builtins[i];
       if(strcmp(command, builtin->name) == 0) {
-        builtin->command();
+        char** argv;
+        if(builtin->takes_arguments) {
+          argv = read_arguments();
+        } else {
+          char* noargs[] = { NULL };
+          argv = noargs;
+        }
+        builtin->command(argv);
         goto continue_mainloop;
       }
     }
 
     // run the command
-    run(command);
+    char** argv = read_arguments();
+    run(command, argv);
     
   continue_mainloop:;
   }
