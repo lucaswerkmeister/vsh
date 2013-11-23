@@ -19,7 +19,9 @@ void run(char* command, char* argv[]) {
   // run
   pid_t process;
   if( (process = fork()) ) {
-    waitpid(process, NULL, 0);
+    int status = 0;
+    waitpid(process, &status, 0);
+    printf("Command exited with status %d\n", WEXITSTATUS(status));
   } else {
     size_t argc = 0;
     while(argv[argc] != NULL)
