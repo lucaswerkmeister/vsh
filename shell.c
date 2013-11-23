@@ -4,10 +4,12 @@
 
 #include "strings.h"
 #include "run.h"
-
+#include "builtins.h"
 
 int main()
 {
+  init_builtins();
+
   while(true) {
     // read the command
     char command[4096]; // "allocate" space for the command
@@ -19,12 +21,19 @@ int main()
     if(command[0] == '\0')
       continue; // empty command, re-read command
 
-    // check for builtins
-    if(strcmp(command, EXIT) == 0)
-      break;
+    // handle builtins
+    for(int i=0; builtins[i] != NULL; i++) {
+      Builtin *builtin = builtins[i];
+      if(strcmp(command, builtin->name) == 0) {
+        builtin->command();
+        goto continue_mainloop;
+      }
+    }
 
     // run the command
     run(command);
+    
+  continue_mainloop:;
   }
   return 0;
 }
