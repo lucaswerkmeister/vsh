@@ -21,17 +21,15 @@ void run(char* command, char* argv[]) {
   if( (process = fork()) ) {
     waitpid(process, NULL, 0);
   } else {
-    size_t size = 0;
-    for(int i=0; argv[i]!=NULL; i++) {
-      size += strlen(argv[i]);
-    }
-    size += strlen(command);
-    char** new_argv = malloc(size);
+    size_t argc = 0;
+    while(argv[argc] != NULL)
+      argc++;
+    char** new_argv = malloc(argc + 2);
     new_argv[0] = command;
-    int i=0;
-    for(i=0; argv[i]!=NULL; i++) {
+    for(int i=0; argv[i]!=NULL; i++) {
       new_argv[i+1] = argv[i];
     }
+    errno = 0;
     execvp(command, new_argv);
     // only executed if execution failed:
     printf("Executing command \"%s\" failed due to error: %s\n", command, strerror(errno));
