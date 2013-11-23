@@ -2,14 +2,35 @@
 #define STRINGS_H
 
 /*
- * The string that is printed before a command is read.
+ * Printed before a command is read.
  */
 const char* PS1;
 
 /*
- * The string that is printed before an argument is read.
+ * Printed before an argument is read.
  */
 const char* PS2;
+
+/*
+ * Printed if the command file was not found or is not executable
+ */
+const char* COMMAND_NOT_FOUND;
+
+/*
+ * Printed after the command exits.
+ *
+ * printf parameters: exit status
+ *
+ */
+const char* COMMAND_EXIT;
+
+/*
+ * Printed if executing the command failed.
+ *
+ * printf parameters: command, strerror
+ *
+ */
+const char* COMMAND_FAILED;
 
 /*
  * The builtin command that will exit the shell.

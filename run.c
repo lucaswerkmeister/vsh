@@ -7,12 +7,12 @@
 #include <sys/types.h>
 
 #include "run.h"
-
+#include "strings.h"
 
 void run(char* command, char* argv[]) {
   // check if the file exists
   if(access(command, X_OK) != 0) {
-    printf("Command not found or permission denied\n");
+    printf(COMMAND_NOT_FOUND);
     return;
   }
 
@@ -21,7 +21,7 @@ void run(char* command, char* argv[]) {
   if( (process = fork()) ) {
     int status = 0;
     waitpid(process, &status, 0);
-    printf("Command exited with status %d\n", WEXITSTATUS(status));
+    printf(COMMAND_EXIT, WEXITSTATUS(status));
   } else {
     size_t argc = 0;
     while(argv[argc] != NULL)
@@ -36,7 +36,7 @@ void run(char* command, char* argv[]) {
     errno = 0;
     execvp(command, new_argv);
     // only executed if execution failed:
-    printf("Executing command \"%s\" failed due to error: %s\n", command, strerror(errno));
+    printf(COMMAND_FAILED, command, strerror(errno));
     exit(-1);
   }
 }
