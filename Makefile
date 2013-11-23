@@ -2,7 +2,8 @@ CC=     gcc
 LD=     ld
 CFLAGS= -W -Wall -Werror -std=c99 -g
 TARGET= shell
-SRC=    $(TARGET).c
+CODE=   strings.c run.c
+SRC=    $(TARGET).c $(CODE)
 OBJ=    $(SRC:%.c=%.o)
 
 $(TARGET): $(OBJ)
@@ -17,7 +18,7 @@ $(TARGET)-solution.o:
 	|| { echo "Download solution tarball." >&2; false; }
 	$(CC) $(CFLAGS) -c $(TARGET)-solution.c
 
-%.o: %.c
+%.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
 
 clean:
