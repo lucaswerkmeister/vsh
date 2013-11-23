@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
@@ -8,9 +9,28 @@
 #include "builtins.h"
 
 char** read_arguments() {
-  // TODO implement
-  static char* ret[] = { NULL };
-  return ret;
+  char argument[4096]; // buffer
+  char** arguments = malloc(4096);
+  int i = 0; // index into arguments
+  do {
+    printf(PS2);
+    fgets(argument, 4096, stdin);
+    if(argument[0] != '\0') {
+      size_t length = strlen(argument);
+      if(argument[length-1] == '\n') {
+        argument[length-1]='\0';
+        length--;
+      }
+      if(length == 0) {
+        arguments[i] = NULL;
+        break;
+      }
+      arguments[i] = malloc(sizeof(char) * (length + 1));
+      strncpy(arguments[i], argument, length + 1);
+      i++;
+    }
+  } while(argument[0] != '\0' && i < 4096);
+  return arguments;
 }
 
 int main()
@@ -19,7 +39,7 @@ int main()
 
   while(true) {
     // read the command
-    char command[4096]; // "allocate" space for the command
+    char command[4096]; // buffer
     printf(PS1);
     fgets(command, 4096, stdin);
     int l = strlen(command);
@@ -47,6 +67,7 @@ int main()
     // run the command
     char** argv = read_arguments();
     run(command, argv);
+    free(argv);
     
   continue_mainloop:;
   }
