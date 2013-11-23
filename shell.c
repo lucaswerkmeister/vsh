@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "shell.h"
 #include "strings.h"
 #include "run.h"
 #include "builtins.h"
