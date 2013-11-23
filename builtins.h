@@ -6,16 +6,15 @@
 #include "strings.h"
 
 
-void builtin_exit(char *argv[]);
-
 typedef struct {
   const char* name;
   bool takes_arguments;
   void (*command)(char *argv[]);
 } Builtin;
 
-Builtin b_exit;
-
+/*
+ * initialize the builtins array (see below)
+ */
 void init_builtins(void);
 
 extern Builtin *builtins[];
