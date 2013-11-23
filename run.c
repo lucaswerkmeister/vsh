@@ -26,9 +26,11 @@ void run(char* command, char* argv[]) {
       argc++;
     char** new_argv = malloc(argc + 2);
     new_argv[0] = command;
-    for(int i=0; argv[i]!=NULL; i++) {
+    int i = 0;
+    for(; argv[i]!=NULL; i++) {
       new_argv[i+1] = argv[i];
     }
+    new_argv[i+1] = NULL;
     errno = 0;
     execvp(command, new_argv);
     // only executed if execution failed:
