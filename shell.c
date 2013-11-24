@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+#include <unistd.h>
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -59,9 +61,15 @@ int main()
   }
   
   while(true) {
+    // print PS1
+    char* cwd = get_current_dir_name();
+    char hostname[256];
+    gethostname(hostname, 256);
+    printf(PS1, getenv("USER"), getuid(), hostname, cwd);
+    free(cwd);
+
     // read the command
     char command[4096]; // buffer
-    printf(PS1);
     fgets(command, 4096, stdin);
     int l = strlen(command);
     if(command[l-1] == '\n')

@@ -12,6 +12,12 @@ const char* ERROR_SIGINT_HANDLER;
 
 /*
  * Printed before a command is read.
+ *
+ * printf parameters:
+ * 1. user name
+ * 2. user ID
+ * 3. hostname
+ * 4. current working directory
  */
 const char* PS1;
 
