@@ -1,6 +1,8 @@
 #include "strings.h"
 
 
+const char* ERROR_SIGINT_HANDLER = "WARNING: Could not register SIGINT handler; error: %2$s\n";
+
 const char* PS1 = "Enter a command: ";
 
 const char* PS2 = "Enter an argument, or nothing to end arguments: ";

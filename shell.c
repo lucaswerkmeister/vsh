@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <errno.h>
 
 #include "shell.h"
 #include "strings.h"
@@ -54,7 +55,7 @@ int main()
   sigemptyset(&act.sa_mask);
   act.sa_flags = 0;
   if( sigaction(SIGINT, &act, NULL) == -1) {
-    printf("WARNING: could not establish interrupt handler!\n");
+    printf(ERROR_SIGINT_HANDLER, errno, strerror(errno));
   }
   
   while(true) {

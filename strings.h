@@ -2,6 +2,13 @@
 #define STRINGS_H
 
 /*
+ * Printed if the SIGINT handler can't be registered.
+ *
+ * printf parameters: errno, strerror(errno)
+ */
+const char* ERROR_SIGINT_HANDLER;
+
+/*
  * Printed before a command is read.
  */
 const char* PS1;
