@@ -17,6 +17,6 @@ const char* COMMAND_EXIT = "Command exited with status %2$d after %3$02d:%4$02d:
 
 const char* COMMAND_FAILED = "Executing command \"%s\" failed due to error: %3$s\n";
 
-const char* EXIT = "exit";
+const char* BUILTIN_EXIT = "exit";
 
-const char* QUIT = "quit";
+const char* BUILTIN_QUIT = "quit";

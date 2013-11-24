@@ -26,9 +26,9 @@ Builtin b_quit;
 Builtin *builtins[] = { &b_exit, &b_quit, NULL }; 
 
 void init_builtins() {
-  b_exit.name = EXIT;
+  b_exit.name = BUILTIN_EXIT;
   b_exit.takes_arguments = false;
   b_exit.command = &builtin_exit;
 
-  alias(&b_quit, QUIT, &b_exit);
+  alias(&b_quit, BUILTIN_QUIT, &b_exit);
 }

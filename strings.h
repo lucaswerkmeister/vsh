@@ -56,11 +56,11 @@ const char* COMMAND_FAILED;
 /*
  * The builtin command that will exit the shell.
  */
-const char* EXIT;
+const char* BUILTIN_EXIT;
 
 /*
- * An alias to EXIT.
+ * An alias to BUILTIN_EXIT.
  */
-const char* QUIT;
+const char* BUILTIN_QUIT;
 
 #endif
