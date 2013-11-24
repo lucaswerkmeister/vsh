@@ -14,17 +14,24 @@
 #include "run.h"
 #include "builtins.h"
 
+
+HISTORY_STATE *command_history, *argument_history;
+
 char** read_arguments() {
   char** arguments = malloc(4096);
   int i = 0; // index into arguments
   char* argument; // current argument
+  history_set_history_state(argument_history);
   do {
     argument = readline(PS2);
     if(argument[0] == '\0')
       argument = NULL;
     arguments[i] = argument;
     i++;
+    if(argument != NULL)
+      add_history(argument);
   } while(argument != NULL && i < 4096);
+  argument_history = history_get_history_state();
   return arguments;
 }
 
@@ -36,6 +43,11 @@ void on_sigint(/* int signal */) {
 int main()
 {
   init_builtins();
+
+  using_history();
+  argument_history = history_get_history_state();
+  using_history();
+  command_history = history_get_history_state();
   
   // signal handling:
   // The default way to handle signals is signal(2),
@@ -61,12 +73,15 @@ int main()
     free(cwd);
 
     // read the command
+    history_set_history_state(command_history);
     char* command = readline(ps1);
     free(ps1);
     if(command == NULL)
       command = "";
     if(command[0] == '\0')
       continue; // empty command, re-read command
+    add_history(command);
+    command_history = history_get_history_state();
 
     // handle builtins
     for(int i=0; builtins[i] != NULL; i++) {
