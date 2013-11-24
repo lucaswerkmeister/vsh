@@ -23,6 +23,10 @@ That’s it!
 Builtin commands
 ----------------
 
+# cd, change directory
+
+Change the current directory to the specified one. Takes 1 argument.
+
 # exit, quit
 
 Exits the shell.

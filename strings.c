@@ -20,3 +20,7 @@ const char* COMMAND_FAILED = "Executing command \"%s\" failed due to error: %3$s
 const char* BUILTIN_EXIT = "exit";
 
 const char* BUILTIN_QUIT = "quit";
+
+const char* BUILTIN_CD = "cd";
+
+const char* BUILTIN_CHANGE_DIRECTORY = "change directory";

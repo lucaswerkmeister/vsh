@@ -23,7 +23,13 @@ void builtin_exit(char* argv[]) {
 Builtin b_exit;
 Builtin b_quit;
 
-Builtin *builtins[] = { &b_exit, &b_quit, NULL }; 
+void builtin_cd(char* argv[]) {
+  chdir(argv[0]);
+}
+Builtin b_cd;
+Builtin b_change_directory;
+
+Builtin *builtins[] = { &b_exit, &b_quit, &b_cd, &b_change_directory, NULL }; 
 
 void init_builtins() {
   b_exit.name = BUILTIN_EXIT;
@@ -31,4 +37,10 @@ void init_builtins() {
   b_exit.command = &builtin_exit;
 
   alias(&b_quit, BUILTIN_QUIT, &b_exit);
+
+  b_cd.name = BUILTIN_CD;
+  b_cd.takes_arguments = true;
+  b_cd.command = &builtin_cd;
+
+  alias(&b_change_directory, BUILTIN_CHANGE_DIRECTORY, &b_cd);
 }

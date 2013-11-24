@@ -63,4 +63,14 @@ const char* BUILTIN_EXIT;
  */
 const char* BUILTIN_QUIT;
 
+/*
+ * The builtin command that changes the current directory.
+ */
+const char* BUILTIN_CD;
+
+/*
+ * An alias to BUILTIN_CD.
+ */
+const char* BUILTIN_CHANGE_DIRECTORY;
+
 #endif
