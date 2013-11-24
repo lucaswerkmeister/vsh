@@ -7,7 +7,7 @@
 #include <stdbool.h>
 #include <errno.h>
 
-#include "shell.h"
+#include "vsh.h"
 #include "strings.h"
 #include "run.h"
 #include "builtins.h"
