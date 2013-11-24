@@ -4,7 +4,9 @@
 /*
  * Printed if the SIGINT handler can't be registered.
  *
- * printf parameters: errno, strerror(errno)
+ * printf parameters:
+ * 1. errno
+ * 2. strerror(errno)
  */
 const char* ERROR_SIGINT_HANDLER;
 
@@ -26,14 +28,21 @@ const char* COMMAND_NOT_FOUND;
 /*
  * Printed after the command exits.
  *
- * printf parameters: command string, exit status, elapsed hours, elapsed minutes, elapsed seconds
+ * printf parameters:
+ * 1. command string
+ * 2. exit status
+ * 3. elapsed hours
+ * 4. elapsed minutes
+ * 5. elapsed seconds
  */
 const char* COMMAND_EXIT;
 
 /*
  * Printed if executing the command failed.
  *
- * printf parameters: command, strerror
+ * printf parameters:
+ * 1. command
+ * 2. strerror
  */
 const char* COMMAND_FAILED;
 
