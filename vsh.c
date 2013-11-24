@@ -24,7 +24,10 @@ char** read_arguments() {
   history_set_history_state(argument_history);
   do {
     argument = readline(PS2);
-    if(argument[0] == '\0')
+    if(argument == NULL)
+      // user entered EOF on empty line
+      printf("\n");
+    if(argument != NULL && argument[0] == '\0')
       argument = NULL;
     arguments[i] = argument;
     i++;
@@ -76,8 +79,10 @@ int main()
     history_set_history_state(command_history);
     char* command = readline(ps1);
     free(ps1);
-    if(command == NULL)
+    if(command == NULL) {
       command = "";
+      printf("\n");
+    }
     if(command[0] == '\0')
       continue; // empty command, re-read command
     add_history(command);
