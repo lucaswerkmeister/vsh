@@ -29,8 +29,7 @@ void run(char* command, char* argv[]) {
     int hours = elapsed/(60*60);
     int minutes = (elapsed%(60*60))/60;
     int seconds = elapsed%60;
-    printf(COMMAND_TIME, command, hours, minutes, seconds);
-    printf(COMMAND_EXIT, WEXITSTATUS(status));
+    printf(COMMAND_EXIT, command, WEXITSTATUS(status), hours, minutes, seconds);
   } else {
     size_t argc = 0;
     while(argv[argc] != NULL)
