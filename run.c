@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <time.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 
@@ -17,10 +18,18 @@ void run(char* command, char* argv[]) {
   }
 
   // run
+  time_t start, stop;
+  time(&start);
   pid_t process;
   if( (process = fork()) ) {
     int status = 0;
     waitpid(process, &status, 0);
+    time(&stop);
+    time_t elapsed = stop - start;
+    int hours = elapsed/(60*60);
+    int minutes = (elapsed%(60*60))/60;
+    int seconds = elapsed%60;
+    printf(COMMAND_TIME, command, hours, minutes, seconds);
     printf(COMMAND_EXIT, WEXITSTATUS(status));
   } else {
     size_t argc = 0;

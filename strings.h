@@ -19,8 +19,14 @@ const char* COMMAND_NOT_FOUND;
 /*
  * Printed after the command exits.
  *
- * printf parameters: exit status
+ * printf parameters: command string, elapsed hours, elapsed minutes, elapsed seconds
+ */
+const char* COMMAND_TIME;
+
+/*
+ * Printed after the command exits.
  *
+ * printf parameters: exit status
  */
 const char* COMMAND_EXIT;
 
@@ -28,7 +34,6 @@ const char* COMMAND_EXIT;
  * Printed if executing the command failed.
  *
  * printf parameters: command, strerror
- *
  */
 const char* COMMAND_FAILED;
 
