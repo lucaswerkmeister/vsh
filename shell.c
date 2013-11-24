@@ -88,6 +88,9 @@ int main()
     // run the command
     char** argv = read_arguments();
     run(command, argv);
+    for(int i=0; argv[i] != NULL; i++) {
+      free(argv[i]);
+    }
     free(argv);
     
   continue_mainloop:;
