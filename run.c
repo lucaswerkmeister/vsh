@@ -45,7 +45,7 @@ void run(char* command, char* argv[]) {
     errno = 0;
     execvp(command, new_argv);
     // only executed if execution failed:
-    printf(COMMAND_FAILED, command, strerror(errno));
+    printf(COMMAND_FAILED, command, errno, strerror(errno));
     exit(-1);
   }
 }

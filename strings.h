@@ -42,7 +42,8 @@ const char* COMMAND_EXIT;
  *
  * printf parameters:
  * 1. command
- * 2. strerror
+ * 2. errno
+ * 3. strerror(errno)
  */
 const char* COMMAND_FAILED;
 

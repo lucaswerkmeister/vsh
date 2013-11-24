@@ -11,7 +11,7 @@ const char* COMMAND_NOT_FOUND = "Command not found or permission denied\n";
 
 const char* COMMAND_EXIT = "Command exited with status %2$d after %3$02d:%4$02d:%5$02d\n";
 
-const char* COMMAND_FAILED = "Executing command \"%s\" failed due to error: %s\n";
+const char* COMMAND_FAILED = "Executing command \"%s\" failed due to error: %3$s\n";
 
 const char* EXIT = "exit";
 
