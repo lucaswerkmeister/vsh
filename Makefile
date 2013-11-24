@@ -3,14 +3,14 @@ LD=     ld
 # "override CFLAGS += ..." appends to any CFLAGS
 # that were specified on the command line.
 # note: to use sigaction, gnu99 is required instead of c99.
-override CFLAGS += -W -Wall -Werror -std=gnu99 -g
+override CFLAGS += -W -Wall -Werror -std=gnu99 -g -lreadline
 TARGET= vsh
 CODE=   strings.c run.c builtins.c
 SRC=    $(TARGET).c $(CODE)
 OBJ=    $(SRC:%.c=%.o)
 
 $(TARGET): $(OBJ)
-	$(CC) -o $@ $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ)
 
 .PHONY: $(TARGET)-solution.o
 $(TARGET)-sol: $(subst $(TARGET),$(TARGET)-solution,$(OBJ))

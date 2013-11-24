@@ -6,6 +6,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <errno.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #include "vsh.h"
 #include "strings.h"
@@ -13,27 +15,16 @@
 #include "builtins.h"
 
 char** read_arguments() {
-  char argument[4096]; // buffer
   char** arguments = malloc(4096);
   int i = 0; // index into arguments
+  char* argument; // current argument
   do {
-    printf(PS2);
-    fgets(argument, 4096, stdin);
-    if(argument[0] != '\0') {
-      size_t length = strlen(argument);
-      if(argument[length-1] == '\n') {
-        argument[length-1]='\0';
-        length--;
-      }
-      if(length == 0) {
-        arguments[i] = NULL;
-        break;
-      }
-      arguments[i] = malloc(sizeof(char) * (length + 1));
-      strncpy(arguments[i], argument, length + 1);
-      i++;
-    }
-  } while(argument[0] != '\0' && i < 4096);
+    argument = readline(PS2);
+    if(argument[0] == '\0')
+      argument = NULL;
+    arguments[i] = argument;
+    i++;
+  } while(argument != NULL && i < 4096);
   return arguments;
 }
 
@@ -65,15 +56,15 @@ int main()
     char* cwd = get_current_dir_name();
     char hostname[256];
     gethostname(hostname, 256);
-    printf(PS1, getenv("USER"), getuid(), hostname, cwd);
+    char* ps1;
+    asprintf(&ps1, PS1, getenv("USER"), getuid(), hostname, cwd); // "print" PS1 to string ps1
     free(cwd);
 
     // read the command
-    char command[4096]; // buffer
-    fgets(command, 4096, stdin);
-    int l = strlen(command);
-    if(command[l-1] == '\n')
-      command[l-1] = '\0';
+    char* command = readline(ps1);
+    free(ps1);
+    if(command == NULL)
+      command = "";
     if(command[0] == '\0')
       continue; // empty command, re-read command
 
@@ -100,6 +91,8 @@ int main()
       free(argv[i]);
     }
     free(argv);
+
+    free(command);
     
   continue_mainloop:;
   }
