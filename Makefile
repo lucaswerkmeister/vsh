@@ -1,6 +1,6 @@
 CC=     gcc
 LD=     ld
-CFLAGS= -W -Wall -Werror -std=c99 -g
+CFLAGS= -W -Wall -Werror -std=gnu99 -g # note: to use sigaction, gnu99 is required instead of c99.
 TARGET= shell
 CODE=   strings.c run.c builtins.c
 SRC=    $(TARGET).c $(CODE)

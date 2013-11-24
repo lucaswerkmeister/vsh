@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
@@ -33,10 +34,29 @@ char** read_arguments() {
   return arguments;
 }
 
+void on_sigint(/* int signal */) {
+  // print a newline after the ^C
+  printf("\n");
+}
+
 int main()
 {
   init_builtins();
-
+  
+  // signal handling:
+  // The default way to handle signals is signal(2),
+  // but the manpage advises against its use
+  // and recommends using sigaction(2) instead.
+  // However, this requires the use of
+  // -std=gnu99 instead of -std=c99.
+  struct sigaction act;
+  act.sa_handler = on_sigint;
+  sigemptyset(&act.sa_mask);
+  act.sa_flags = 0;
+  if( sigaction(SIGINT, &act, NULL) == -1) {
+    printf("WARNING: could not establish interrupt handler!\n");
+  }
+  
   while(true) {
     // read the command
     char command[4096]; // buffer

@@ -10,6 +10,7 @@
 #include "run.h"
 #include "strings.h"
 
+
 void run(char* command, char* argv[]) {
   // check if the file exists
   if(access(command, X_OK) != 0) {
