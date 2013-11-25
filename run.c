@@ -12,12 +12,6 @@
 
 
 void run(char* command, char* argv[]) {
-  // check if the file exists
-  if(access(command, X_OK) != 0) {
-    printf(COMMAND_NOT_FOUND);
-    return;
-  }
-
   // run
   time_t start, stop;
   time(&start);
