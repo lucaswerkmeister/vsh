@@ -27,8 +27,10 @@ char** read_arguments() {
     if(argument == NULL)
       // user entered EOF on empty line
       printf("\n");
-    if(argument != NULL && argument[0] == '\0')
+    if(argument != NULL && argument[0] == '\0') {
+      free(argument);
       argument = NULL;
+    }
     arguments[i] = argument;
     i++;
     if(argument != NULL)
