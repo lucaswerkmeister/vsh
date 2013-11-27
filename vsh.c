@@ -1,18 +1,15 @@
-#define _GNU_SOURCE
-#include <unistd.h>
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include <errno.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
 #include "vsh.h"
-#include "strings.h"
 #include "run.h"
 #include "builtins.h"
+#include "io.h"
 
 
 HISTORY_STATE *command_history, *argument_history;
@@ -23,7 +20,9 @@ char** read_arguments() {
   char* argument; // current argument
   history_set_history_state(argument_history);
   do {
-    argument = readline(PS2);
+    char* ps2_string = ps2();
+    argument = readline(ps2_string);
+    free(ps2_string);
     if(argument == NULL)
       // user entered EOF on empty line
       printf("\n");
@@ -69,18 +68,11 @@ int main()
   }
   
   while(true) {
-    // print PS1
-    char* cwd = get_current_dir_name();
-    char hostname[256];
-    gethostname(hostname, 256);
-    char* ps1;
-    asprintf(&ps1, PS1, getenv("USER"), getuid(), hostname, cwd); // "print" PS1 to string ps1
-    free(cwd);
-
     // read the command
     history_set_history_state(command_history);
-    char* command = readline(ps1);
-    free(ps1);
+    char* ps1_string = ps1();
+    char* command = readline(ps1_string);
+    free(ps1_string);
     if(command == NULL) {
       command = "";
       printf("\n");

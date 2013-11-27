@@ -5,7 +5,7 @@ LD=     ld
 # note: to use sigaction, gnu99 is required instead of c99.
 override CFLAGS += -W -Wall -Werror -std=gnu99 -g -lreadline
 TARGET= vsh
-CODE=   strings.c run.c builtins.c
+CODE=   strings.c run.c builtins.c io.c
 SRC=    $(TARGET).c $(CODE)
 OBJ=    $(SRC:%.c=%.o)
 
