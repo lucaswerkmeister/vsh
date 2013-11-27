@@ -13,7 +13,10 @@ $(TARGET): $(OBJ)
 # note: on Linux Mint 15, the linker can't find the readline library if $(CFLAGS) put in front of $(OBJ).
 	$(CC) -o $@ $(OBJ) $(CFLAGS)
 
-.PHONY: $(TARGET)-solution.o
+expert:
+	$(MAKE) $(TARGET) CFLAGS=-DEXPERT
+
+.PHONY: $(TARGET)-solution.o expert
 $(TARGET)-sol: $(subst $(TARGET),$(TARGET)-solution,$(OBJ))
 	$(CC) -o $@ $^
 
