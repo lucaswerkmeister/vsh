@@ -14,13 +14,13 @@
 
 HISTORY_STATE *command_history, *argument_history;
 
-char** read_arguments() {
+char** read_arguments(char* command) {
   char** arguments = malloc(4096);
   int i = 0; // index into arguments
   char* argument; // current argument
   history_set_history_state(argument_history);
   do {
-    char* ps2_string = ps2();
+    char* ps2_string = ps2(command);
     argument = readline(ps2_string);
     free(ps2_string);
     if(argument == NULL)
@@ -88,7 +88,7 @@ int main()
       if(strcmp(command, builtin->name) == 0) {
         char** argv;
         if(builtin->takes_arguments) {
-          argv = read_arguments();
+          argv = read_arguments(command);
         } else {
           char* noargs[] = { NULL };
           argv = noargs;
@@ -99,7 +99,7 @@ int main()
     }
 
     // run the command
-    char** argv = read_arguments();
+    char** argv = read_arguments(command);
     run(command, argv);
     for(int i=0; argv[i] != NULL; i++) {
       free(argv[i]);

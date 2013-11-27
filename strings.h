@@ -23,6 +23,13 @@ const char* PS1;
 
 /*
  * Printed before an argument is read.
+ *
+ * printf parameters:
+ * 1. command
+ * 2. user name
+ * 3. user ID
+ * 4. hostname
+ * 5. current working directory
  */
 const char* PS2;
 

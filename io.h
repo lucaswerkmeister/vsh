@@ -13,6 +13,6 @@ char* ps1();
  *
  * The returned char* should be free()d by the caller.
  */
-char* ps2();
+char* ps2(char* command);
 
 #endif

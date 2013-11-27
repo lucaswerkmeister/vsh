@@ -18,8 +18,12 @@ char* ps1() {
   return ps1;
 }
 
-char* ps2() {
+char* ps2(char* command) {
+  char* cwd = get_current_dir_name();
+  char hostname[256];
+  gethostname(hostname, 256);
   char* ps2;
-  asprintf(&ps2, PS2);
+  asprintf(&ps2, PS2, command, getenv("USER"), getuid(), hostname, cwd);
+  free(cwd);
   return ps2;
 }
