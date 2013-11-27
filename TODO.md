@@ -16,3 +16,13 @@ A few more builtins
 
 Actually, I feel like only one of the builtins from builtins(1) would make sense:
 suspend.
+
+Better interrupt handling
+-------------------------
+
+An interrupt (CTRL-C) should cancel the current readline() and re-readline().
+According to [this stackoverflow answer][so_siglongjmp], this can be achieved with siglongjmp;
+however, according to the siglongjmp(3) manpage (and common sense), this "make[s] programs hard to understand and maintain",
+so I’ll hold off on that to avoid making the job of the tutor unnecessarily hard :)
+
+[so_siglongjmp]: http://stackoverflow.com/a/17035073
