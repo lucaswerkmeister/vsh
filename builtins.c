@@ -7,7 +7,8 @@
 /*
  * sets up `builtin` as an alias of `target`.
  *
- * More specifically
+ * More specifically, copies the `takes_arguments` and `command` from `target` to `builtin`,
+ * and sets `builtin`’s name to `name`.
  */
 void alias(Builtin *builtin, const char* name, Builtin *target) {
   builtin->name = name;
