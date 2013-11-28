@@ -2,8 +2,7 @@ CC=     gcc
 LD=     ld
 # "override CFLAGS += ..." appends to any CFLAGS
 # that were specified on the command line.
-# note: to use sigaction, gnu99 is required instead of c99.
-override CFLAGS += -W -Wall -Werror -std=gnu99 -g -lreadline
+override CFLAGS += -W -Wall -Werror -std=c99 -g -lreadline
 TARGET= vsh
 CODE=   strings.c run.c builtins.c io.c
 SRC=    $(TARGET).c $(CODE)
