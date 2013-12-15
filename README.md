@@ -23,11 +23,11 @@ That’s it!
 Builtin commands
 ----------------
 
-# cd, change directory
+### cd, change directory
 
 Change the current directory to the specified one. Takes 1 argument.
 
-# exit, quit
+### exit, quit
 
 Exits the shell.
 
@@ -41,6 +41,6 @@ this is to help people who are coming from other shells, and who might be tempte
 However, once you’ve gotten familiar with `vsh`, you probably don’t need this reminder anymore, and as it takes away a lot of
 screen space, you want to get rid of it. Nothing easier than that – just compile with "-D  EXPERT", or using the makefile:
 
-    make CFLAGS="-D EXPERT"
+    make expert
 
 and you’ll get a much more useful command prompt (including your username, hostname, and working directory).
