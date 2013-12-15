@@ -59,7 +59,7 @@ int main()
   // but the manpage advises against its use
   // and recommends using sigaction(2) instead.
   // However, this requires the use of
-  // -std=gnu99 instead of -std=c99.
+  // #define _GNU_SOURCE
   struct sigaction act;
   act.sa_handler = on_sigint;
   sigemptyset(&act.sa_mask);
