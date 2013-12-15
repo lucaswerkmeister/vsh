@@ -14,7 +14,7 @@ may try to spawn a subshell, or "CURRIC~1.TXT", which will replace the tilde ('~
 
 Enter `vsh`. Everything you enter is passed on *verbatim*. No stupid escape sequences, no backslash hell. Just this:
 
-    Enter a command: /usr/bin/less
+    Enter a command: less
     Enter an argument, or nothing to end arguments: Curriculum Vitae (final).txt
     Enter an argument, or nothing to end arguments: 
 
