@@ -3,7 +3,7 @@ vsh
 
 `vsh` is the Verbatim/Verbose SHell.
 
-It’s the year 2013. Filenames with spaces have been in use for several centuries now.
+It’s the year 2013. Filenames with spaces have been in use for several decades now.
 And yet, no popular shell can nicely handle them: They all require you to escape the spaces, usually with something like:
 
     less Curriculum\ Vitae.txt
