@@ -15,17 +15,10 @@ $(TARGET): $(OBJ)
 expert:
 	$(MAKE) $(TARGET) CFLAGS=-DEXPERT
 
-.PHONY: $(TARGET)-solution.o expert
-$(TARGET)-sol: $(subst $(TARGET),$(TARGET)-solution,$(OBJ))
-	$(CC) -o $@ $^
-
-$(TARGET)-solution.o:
-	@test -f $(TARGET)-solution.c \
-	|| { echo "Download solution tarball." >&2; false; }
-	$(CC) $(CFLAGS) -c $(TARGET)-solution.c
+.PHONY: expert clean
 
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -rf $(TARGET) $(TARGET)-sol *.o
+	rm -rf $(TARGET) *.o
